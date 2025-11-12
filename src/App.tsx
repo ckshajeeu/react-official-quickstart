@@ -9,6 +9,10 @@ function App() {
 
   return (
     <>
+      <h1>React Quickstart</h1>
+      <a href="https://react.dev/learn" target='_blank'>
+        Link to official quickstart
+      </a>
 
       <div className='container'>
         <div className='topic'>Creating and nesting components </div>
