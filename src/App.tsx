@@ -1,9 +1,15 @@
 import './App.css'
 
 function App() {
-  
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1)
+  }
+
   return (
     <>
+
       <div className='container'>
         <div className='topic'>Creating and nesting components </div>
         <div>
@@ -22,20 +28,66 @@ function App() {
       <div className='container'>
         <div className='topic'>Adding styles </div>
         <div>
-          <img className='avatar' src='https://placehold.co/100'/>
+          <img className='avatar' src='https://placehold.co/100' />
         </div>
-      </div> 
+      </div>
 
       <div className='container'>
         <div className='topic'>Displaying data</div>
         <div>
           <Profile />
         </div>
-      </div> 
+      </div>
+
+      <div className='container'>
+        <div className='topic'>Conditional rendering</div>
+        <div>
+          <SecuredContent />
+        </div>
+        <div>
+          {isLoggedIn2 ? <AdminPanel /> : <LoginForm />}
+        </div>
+        <div>
+          {isLoggedIn && <AdminPanel />}
+        </div>
+      </div>
+
+      <div className='container'>
+        <div className='topic'>Rendering lists</div>
+        <div>
+          <ShoppingList />
+        </div>
+      </div>
+
+      <div className='container'>
+        <div className='topic'>Responding to events</div>
+        <div><p></p>
+          <MyButton2 />
+        </div>
+      </div>
+
+      <div className='container'>
+        <div className='topic'>Updating the screen</div>
+        <div><p></p>
+          <MyButton3 /> &nbsp;
+          <MyButton3 />
+        </div>
+      </div>
+
+      <div className='container'>
+        <div className='topic'>Sharing data between components</div>
+        <div><p></p>
+          <MyButton4 count={count} onClick={handleClick} /> &nbsp;
+          <MyButton4  count={count} onClick={handleClick} />
+        </div>
+      </div>
+
     </>
-    
+
   )
 }
+
+import { useState } from 'react';
 
 function MyButton() {
   return (
@@ -69,6 +121,90 @@ function Profile() {
         }}
       />
     </>
+  )
+}
+
+
+
+let isLoggedIn = false
+let isLoggedIn2 = true
+function SecuredContent() {
+  let content: any;
+  if (isLoggedIn) {
+    content = <AdminPanel />
+  } else {
+    content = <LoginForm />
+  }
+  return (
+    <>
+      <div>
+        {content}
+      </div>
+    </>
+  )
+}
+function AdminPanel() {
+  return (
+    <>
+      <h1>AdminPane</h1>
+    </>
+  )
+}
+function LoginForm() {
+  return (
+    <>
+      <h1>LoginForm</h1>
+    </>
+  )
+}
+
+const products = [
+  { title: 'Cabbage', id: 1 , isFruit: false},
+  { title: 'Garlic', id: 2 , isFruit: true},
+  { title: 'Apple', id: 3 , isFruit: false},
+]
+function ShoppingList() {
+  const listItems: any = products.map(product =>
+    <li key={product.id}
+      style={{
+        color: product.isFruit ? 'magenta' : 'darkgreen'
+      }}
+    >
+    {product.title}</li>
+  )
+
+  return (
+    <ul>{listItems}</ul>
+  )
+}
+
+function MyButton2() {
+  function handleClick() {
+    alert('You clicked me!');
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Click me
+    </button>
+  )
+}
+
+function MyButton3() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1)
+  }
+
+  return (
+    <button onClick={handleClick}>Clicked {count} times</button>
+  )
+}
+
+function MyButton4({count, onClick} :any) {
+  return (
+    <button onClick={onClick}>Clicked {count} times</button>
   )
 }
 

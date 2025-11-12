@@ -1,3 +1,12 @@
+# <a href="https://react.dev/" target="_blank">React</a> Quickstart Practice
+
+<a href="https://ckshajeeu.github.io/react-official-quickstart/" target="_blank"> Click to view the demo here!</a>
+
+React app from Scratch
+```sh
+npm create vite@latest my-app -- --template react-ts
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
